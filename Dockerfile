@@ -1,12 +1,17 @@
-FROM alpine:latest
+FROM ubuntu:latest
 MAINTAINER "playniuniu" <playniuniu@gmail.com>
 
-RUN apk add --no-cache --update py-pip firefox-esr-dev xvfb dbus chromium-chromedriver \
-    && pip install robotframework robotframework-selenium2library selenium robotframework-xvfb 
+ENV DEBIAN_FRONTEND nointeractive
+ENV GECKODRIVER_VER v0.15.0
+ENV GECKODRIVER_URL https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VER}/geckodriver-${GECKODRIVER_VER}-linux64.tar.gz
 
-VOLUME /test
+RUN apt-get update -y \
+    && apt-get install -y curl python-pip firefox dbus-x11 ttf-wqy-microhei \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
+    && cd /usr/local/bin \
+    && curl -L ${GECKODRIVER_URL} | tar xz \
+    && pip install robotframework robotframework-selenium2library selenium
 
-ADD run.sh /usr/local/bin/run.sh
-RUN chmod +x /usr/local/bin/run.sh
+VOLUME /testcases
 
-CMD ["run.sh"]
+CMD ["robot", "/testcases/"]
