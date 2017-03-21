@@ -12,9 +12,9 @@
 
     ```bash
     docker run --rm -t \
-               -e DISPLAY=unix:$DISPLAY \
+               -e DISPLAY=unix$DISPLAY \
                -v /tmp/.X11-unix:/tmp/.X11-unix \
                -v YOUR_TEST_FOLDER:/testcases \
                --name robot-framework \
-               playniuniu/robot-fraemwork
+               playniuniu/robot-framework
     ```
