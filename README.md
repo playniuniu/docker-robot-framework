@@ -2,19 +2,25 @@
 
 ### Run on Linux
 
-1. You need add Docker authority
+1. You need copy your sample_vol folder to your *~/vol/robot/* folder
+
+2. You need add Docker authority
 
     ```bash
     xhost + local:docker
     ```
 
-2. You need connect Docker with XServer
+3. Run it with docker-compose
 
-    ```bash
-    docker run --rm -t \
-               -e DISPLAY=unix$DISPLAY \
-               -v /tmp/.X11-unix:/tmp/.X11-unix \
-               -v YOUR_TEST_FOLDER:/testcases \
-               --name robot-framework \
-               playniuniu/robot-framework
     ```
+    docker-compose up
+    ``` 
+
+### Problem
+
+For now, the firefox fisrt open will show an error dialog, just close it with 'X', donnot click on any button
+
+### Run on step by step
+
+If you want to run this docker step by step, check the **run_step_by_step.sh**
+
