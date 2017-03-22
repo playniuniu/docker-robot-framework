@@ -9,7 +9,7 @@ Library           Selenium2Library
 *** Variables ***
 ${SERVER}         robot-framework-target
 ${BROWSER}        Firefox
-${DELAY}          0
+${DELAY}          0.5 
 ${VALID USER}     demo
 ${VALID PASSWORD}    mode
 ${LOGIN URL}      http://${SERVER}/
